@@ -1,0 +1,6 @@
+<% if @update_config %>
+# File created and managed by Chef - changes will be overwritten!
+<% else %>
+# File created but not managed by Chef - changes will be persistent!
+<% end %>
+<%= @config.to_hash.to_yaml.gsub('---','').lstrip %>

@@ -1,0 +1,79 @@
+#!/bin/bash
+#
+# chkconfig: - 55 45
+# description:  Twitter's twemproxy nutcracker
+# processname: nutcracker
+# config: <%= @conf_dir %>/nutcracker.yml
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+prog=nutcracker
+nutcracker_bin=/usr/local/sbin/nutcracker
+pidfile=<%= @pid_dir %>/nutcracker.pid
+user=<%= @user %>
+options="-c <%= @conf_dir %>/nutcracker.yml -d -p $pidfile -o <%= @log_dir %>/nutcracker.log"
+
+RETVAL=0
+
+start () {
+    echo -n "Starting $prog: "
+    if [ ! -f $pidfile ]; then
+        runuser $user -c "$nutcracker_bin $options"
+        RETVAL=$?
+    else
+        RETVAL=0
+    fi
+    return $RETVAL
+}
+
+stop () {
+    echo -n "Stopping $prog: "
+    if [ -f $pidfile ]; then
+        killproc -p $pidfile
+        RETVAL=$?
+    else
+        RETVAL=0
+    fi
+    return $RETVAL
+}
+
+restart () {
+    stop
+    start
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status -p $pidfile $prog
+        RETVAL=$?
+        exit $RETVAL
+        ;;
+    restart|reload)
+        restart
+        ;;
+    condrestart)
+        if status -p $pidfile $prog >&/dev/null; then
+            restart
+        fi
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|reload|condrestart}"
+        RETVAL=2
+        exit $RETVAL
+esac
+
+if [ $RETVAL == 0 ]; then
+    success
+else
+    failure
+fi
+
+echo
+exit $RETVAL
