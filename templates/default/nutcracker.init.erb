@@ -24,6 +24,8 @@ start () {
     else
         RETVAL=0
     fi
+    [[ $RETVAL = 0 ]] && success || failure
+    echo
     return $RETVAL
 }
 
@@ -35,6 +37,8 @@ stop () {
     else
         RETVAL=0
     fi
+    [[ $RETVAL = 0 ]] && success || failure
+    echo
     return $RETVAL
 }
 
@@ -69,11 +73,4 @@ case "$1" in
         exit $RETVAL
 esac
 
-if [ $RETVAL == 0 ]; then
-    success
-else
-    failure
-fi
-
-echo
 exit $RETVAL
