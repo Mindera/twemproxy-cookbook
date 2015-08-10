@@ -6,7 +6,8 @@
 #
 actions :run,
         :enable,
-        :start
+        :start,
+        :restart
 
 default_action :run
 

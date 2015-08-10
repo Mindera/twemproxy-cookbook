@@ -8,7 +8,7 @@
 action :run do
   configure
   enable
-  start
+  restart
 end
 
 action :enable do
@@ -19,6 +19,11 @@ end
 action :start do
   configure
   start
+end
+
+action :restart do
+  configure
+  restart
 end
 
 def configure
@@ -55,3 +60,10 @@ def start
   end
 end
 
+def restart
+  Chef::Log.info 'Re-starting nutcracker service'
+
+  service 'nutcracker' do
+    action :restart
+  end
+end
