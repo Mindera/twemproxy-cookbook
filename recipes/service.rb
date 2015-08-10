@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: twempropxy
+# Cookbook Name:: twemproxy
 # Recipe:: service
 #
 # Copyright 2015, Mindera
