@@ -9,6 +9,8 @@ action :run do
   create_user
   create_dirs
   configure
+
+  new_resource.updated_by_last_action(true)
 end
 
 def create_user

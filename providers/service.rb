@@ -9,21 +9,29 @@ action :run do
   configure
   enable
   restart
+
+  new_resource.updated_by_last_action(true)
 end
 
 action :enable do
   configure
   enable
+
+  new_resource.updated_by_last_action(true)
 end
 
 action :start do
   configure
   start
+
+  new_resource.updated_by_last_action(true)
 end
 
 action :restart do
   configure
   restart
+
+  new_resource.updated_by_last_action(true)
 end
 
 def configure
@@ -47,23 +55,23 @@ end
 def enable
   Chef::Log.info 'Enabling nutcracker service'
 
-  service 'nutcracker' do
-    action :enable
-  end
+  service_resource(:enable)
 end
 
 def start
   Chef::Log.info 'Starting nutcracker service'
 
-  service 'nutcracker' do
-    action :start
-  end
+  service_resource(:start)
 end
 
 def restart
   Chef::Log.info 'Re-starting nutcracker service'
 
+  service_resource(:restart)
+end
+
+def service_resource(action)
   service 'nutcracker' do
-    action :restart
+    action action
   end
 end

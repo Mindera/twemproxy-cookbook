@@ -18,6 +18,8 @@ action :run do
     download(url)
     build
     install
+
+    new_resource.updated_by_last_action(true)
   end
 end
 
