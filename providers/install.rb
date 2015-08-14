@@ -27,10 +27,10 @@ def install_compile_deps
   include_recipe 'build-essential::default'
 
   # Required but not installed by build-essential
-  %w{
+  %w(
     automake
     libtool
-  }.each do |pkg|
+  ).each do |pkg|
     package pkg  do
       action :install
     end
@@ -73,7 +73,7 @@ def build
 end
 
 def install
-  Chef::Log.info("Installing twemproxy")
+  Chef::Log.info('Installing twemproxy')
 
   execute 'Install twemproxy' do
     cwd "#{Chef::Config[:file_cache_path]}/twemproxy"
@@ -88,7 +88,8 @@ end
 
 def twemproxy_version_installed?
   if twemproxy_exists?
-    cmd = shell_out!("nutcracker --version 2&> /dev/stdout | head -1 | awk -F ' ' '{print $3}' | awk -F '-' '{print $2}'")
+    cmd =
+      shell_out!("nutcracker --version 2&> /dev/stdout | head -1 | awk -F ' ' '{print $3}' | awk -F '-' '{print $2}'")
     !cmd.stdout.match(new_resource.version.tr('v', '')).nil?
   else
     return false
@@ -96,6 +97,5 @@ def twemproxy_version_installed?
 end
 
 def twemproxy_exists?
-  ::File.exists?('/usr/local/sbin/nutcracker')
+  ::File.exist?('/usr/local/sbin/nutcracker')
 end
-

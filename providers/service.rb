@@ -35,12 +35,12 @@ def configure
     owner 'root'
     group 'root'
     mode '0755'
-    variables({
+    variables(
       :conf_dir => new_resource.config_dir,
       :pid_dir => new_resource.pid_dir,
       :log_dir => new_resource.log_dir,
-      :user => new_resource.user,
-    })
+      :user => new_resource.user
+    )
   end
 end
 

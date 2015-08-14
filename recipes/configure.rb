@@ -8,7 +8,7 @@ TWEMPROXY = node['twemproxy']
 TWEMPROXY_CONFIG = node['twemproxy']['config']
 
 if TWEMPROXY_CONFIG.nil?
-  raise "The twemproxy configuration hash must exist - use node['twemproxy']['config'] to set it!"
+  fail "The twemproxy configuration hash must exist - use node['twemproxy']['config'] to set it!"
 end
 
 twemproxy_configure 'twemproxy' do

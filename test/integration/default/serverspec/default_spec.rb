@@ -17,11 +17,11 @@ describe user('nutcracker') do
   it { should belong_to_group 'nutcracker' }
 end
 
-%w{
+%w(
   /etc/nutcracker
   /var/log/nutcracker
   /var/run/nutcracker
-}.each do |dir|
+).each do |dir|
   describe file(dir) do
     it { should be_directory }
   end

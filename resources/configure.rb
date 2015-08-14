@@ -15,4 +15,3 @@ attribute :log_dir, :kind_of => String, :default => '/var/log/nutcracker'
 attribute :pid_dir, :kind_of => String, :default => '/var/run/nutcracker'
 attribute :user, :kind_of => String, :default => 'nutcracker'
 attribute :group, :kind_of => String, :default => 'nutcracker'
-

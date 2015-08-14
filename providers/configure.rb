@@ -57,10 +57,10 @@ def configure
     owner 'root'
     group 'root'
     action config_action
-    variables({
+    variables(
       :config => new_resource.config,
       :update_config => new_resource.update_config
-    })
+    )
   end
 
   config_test unless new_resource.update_config == false
@@ -72,4 +72,3 @@ def config_test
     returns 0
   end
 end
-
