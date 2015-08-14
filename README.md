@@ -12,6 +12,7 @@ None.
 ## Platforms
 
  * Centos 6+
+ * RedHat 6+
 
 ## Usage
 
