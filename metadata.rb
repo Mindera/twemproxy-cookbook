@@ -8,7 +8,6 @@ version          '0.0.1'
 
 supports 'centos'
 supports 'redhat'
-supports 'amazon'
 
 depends 'build-essential', '~> 2.2.3'
 depends 'ark', '~> 0.9.0'
