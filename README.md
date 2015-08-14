@@ -1,6 +1,5 @@
 # Twemproxy Cookbook
 
-[![Cookbook](https://img.shields.io/cookbook/v/twemproxy.svg)](https://supermarket.chef.io/cookbooks/twemproxy)
 [![Build Status](https://travis-ci.org/Mindera/twemproxy-cookbook.svg?branch=master)](https://travis-ci.org/Mindera/twemproxy-cookbook)
 
 Chef coookbook to install and manage [Twemproxy](https://github.com/twitter/twemproxy).
